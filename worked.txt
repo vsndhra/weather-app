@@ -1,0 +1,10 @@
+<div class="top-content d-flex flex-column justify-content-end">
+    <div class="bottom-left d-flex flex-column">
+        <div class="temperature display-1">
+            32<span class="degree">&#176;</span> 
+        </div>
+        <div class="location fw-bold">
+            <i class='bx bx-sm bxs-map'></i> Chennai, India
+        </div>
+    </div>
+</div>

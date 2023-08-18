@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- style sheet -->
+    <link rel="stylesheet" href="style.css">
+    <!-- Bootstrap CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Boxicon CDN -->
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <!-- FontAwesome CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <title>in.madras</title>
+</head>
+<body>
+    <div>
+        <div class="navbar header">
+            <div>
+                <h1 class="title-name fw-bolder">in.madras</h1>
+            </div>
+        </div>
+        <div class="top-content d-flex flex-row justify-content-between">
+            <div class="top-right d-flex flex-column align-self-end">
+                <div class="d-flex flex-row">
+                    <div class="temperature display-1"></div><span class="degree fs-1">&#176;</span><span class="fs-1 fw-medium">c</span>
+                </div>
+                <div class="location fw-bold">
+                    <i class='bx bx-sm bxs-map'></i> Chennai, India
+                </div>
+            </div>
+            <div class="bottom-left d-flex flex-column align-self-end mx-2">
+                <div class="date-time d-flex flex-column align-items-end">
+                    <div class="time display-3 fw-medium">
+                    </div>
+                    <div class="day fs-3">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="bottom-content">
+            <div class="row d-flex flex-row">
+                <div class="details col d-flex">
+                    <div class="row row-one">
+                        <div class="wind d-flex flex-row">
+                            <div class="icon">
+                                <i class='bx bx-wind'></i>
+                            </div> 
+                            <div class="data d-flex flex-column">
+                                <span class="title">Wind</span>
+                                <span class="value"></span><p>meters/sec</p>
+                            </div>
+                        </div>
+                        <div class="humidity d-flex flex-row">
+                            <div class="icon">
+                                <i class='bx bx-water'></i>
+                            </div>
+                            <div class="data d-flex flex-column">
+                                <span class="title">Humidity</span>
+                                <span class="value"></span><p>percentage</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row row-two  d-flex flex-row">
+                        <div class="sunrise d-flex flex-row"> 
+                            <div class="icon">
+                                <i class='bx bxs-sun'></i> 
+                            </div>
+                            <div class="data d-flex flex-column">
+                                <span class="title">Sunrise</span>
+                                <span class="value"></span>
+                            </div>
+                        </div>
+                        <div class="sunset d-flex flex-row">
+                            <div class="icon">
+                                <i class='bx bxs-moon'></i>
+                            </div>
+                            <div class="data d-flex flex-column">
+                                <span class="title">Sunset</span>
+                                <span class="value"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="random col"> 
+                    <div class="weather row d-flex">
+                        <div class="main display-5 text-center pt-2 fw-bold">Cloudy</div>
+                        <div class="description fs-4 text-center">Cloudy</div>
+                        <div class="wea-icon text-center"><img class="wicon" src="" alt="Weather icon"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<script>
+
+    function updateDateTime() {
+        const timeDiv = document.querySelector('.time');
+        const dayDiv = document.querySelector('.day');
+
+        // Get current date and time in UTC
+        const nowUTC = new Date();
+        
+        // Convert to IST
+        const istOffset = 5.5 * 60 * 60 * 1000; // IST offset in milliseconds
+        const nowIST = new Date(nowUTC.getTime() + istOffset);
+
+        // Format time in 24-hour format
+        const hours = nowIST.getUTCHours();
+        const minutes = nowIST.getUTCMinutes();
+        const formattedTime = `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}`;
+
+        // Format date in "day, date, month" format
+        const daysOfWeek = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+        const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+        const dayOfWeek = daysOfWeek[nowIST.getUTCDay()];
+        const dayOfMonth = nowIST.getUTCDate();
+        const month = months[nowIST.getUTCMonth()];
+        const formattedDate = `${month} ${dayOfMonth}, ${dayOfWeek}`;
+
+        // Update HTML content
+        timeDiv.textContent = formattedTime;
+        dayDiv.textContent = formattedDate;
+    }
+
+    // Update time and date every second
+    setInterval(updateDateTime, 1000);
+
+    // Initial update
+    updateDateTime();
+
+    const url = 'https://api.openweathermap.org/data/2.5/weather?lat=3.12&lon=80.27&appid=aa171e11cf979be5535107a2844fe216';
+    const temperatureElement = document.querySelector('.temperature');
+
+    const temperatureDiv = document.querySelector('.temperature');
+    const windDiv = document.querySelector('.wind .value');
+    const humidityDiv = document.querySelector('.humidity .value');
+    const sunriseDiv = document.querySelector('.sunrise .value');
+    const sunsetDiv = document.querySelector('.sunset .value');
+    const mainDiv = document.querySelector('.main');
+    const descriptionDiv = document.querySelector('.description');
+
+    fetch(url)
+        .then(response => response.json())
+        .then(data => {
+            // Handle the received weather data
+            const temperature = Math.round(data.main.temp - 273.15);
+            const windvalue = data.wind.speed;
+            const humidity = data.main.humidity;
+            const sunriseTimestamp = data.sys.sunrise * 1000; // Convert to milliseconds
+            const sunsetTimestamp = data.sys.sunset * 1000; // Convert to milliseconds
+            const sunriseTime = new Date(sunriseTimestamp).toLocaleTimeString();
+            const sunsetTime = new Date(sunsetTimestamp).toLocaleTimeString();
+            const main = data.weather[0].main;
+            const description = data.weather[0].description;
+            const iconcode = data.weather[0].icon;
+            var iconurl = "http://openweathermap.org/img/wn/" + iconcode + ".png";
+            const iconImage = document.querySelector('.wea-icon .wicon');
+            iconImage.src = iconurl;
+
+            temperatureDiv.textContent = temperature;
+            windDiv.textContent = windvalue;
+            humidityDiv.textContent = humidity;
+            sunriseDiv.textContent = sunriseTime;
+            sunsetDiv.textContent = sunsetTime;
+            mainDiv.textContent = main;
+            descriptionDiv.textContent = description;
+        
+        })
+    .catch(error => {
+            console.error('An error occurred:', error);
+    });
+</script>
+</html>

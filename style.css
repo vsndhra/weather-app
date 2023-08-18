@@ -1,0 +1,96 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Quicksand:wght@400;500;700&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+    font-family: 'Quicksand', sans-serif;
+}
+.header{
+    margin: 5px;
+    border-radius: 10px;
+}
+.title-name{
+    padding-left: 15px;
+}
+.header h1{
+    color: #64676C;
+}
+.top-content{
+    background-image: url('images/background.jpg');
+    background-size:auto;
+    margin-left: 40px;
+    margin-right: 40px;
+    margin-bottom: 5px;
+    border-radius: 10px;
+    width: auto; 
+    height: 300px;
+    overflow: hidden;
+    box-sizing: border-box;
+}
+.top-right{
+    margin-bottom:25px;
+    margin-left:25px;
+    border-radius: 10px;
+}
+.date-time{
+    margin-bottom: 25px;
+    margin-right: 25px;
+    border-radius: 10px;
+    /* padding:  15px;
+    background-color: rgba(0, 0, 0, 0.08); 
+    backdrop-filter: blur(1px);  */
+}
+.bottom-content{
+    border-radius: 10px;
+    margin-left: 40px;
+    margin-right: 40px;
+    margin-top: 15px;
+}
+.details{
+    margin-right: 2px;
+    margin-left: 10px;
+    border-radius: 10px;
+    height: 250px;
+    border: 2px solid #C1C4C9;
+}
+.random{
+    margin-left: 2px;
+    margin-right: 10px;
+    border-radius: 10px;
+    border: 2px solid #C1C4C9;
+
+}
+.row-one, .row-two{
+    width: 100%;
+}
+.row-one .wind i{
+    margin: 40px;
+    font-size: 40px;
+}
+.row-one .humidity i{
+    margin: 40px;
+    font-size: 40px;
+}
+.row-two .sunrise i{
+    margin: 40px;
+    font-size: 40px;  
+}
+.row-two .sunset i{
+    margin: 40px;
+    font-size: 40px;  
+}
+.data .title{
+    margin-top: 35px;
+    font-size: medium;
+    font-weight: 500;
+}
+.data .value{
+    font-size: x-large;
+    font-weight: bolder;
+}
+.wicon{
+    width: 100px;
+    height: 100px;
+}

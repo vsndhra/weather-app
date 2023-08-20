@@ -132,7 +132,7 @@
     // Initial update
     updateDateTime();
 
-    const url = 'https://api.openweathermap.org/data/2.5/weather?lat=3.12&lon=80.27&appid=aa171e11cf979be5535107a2844fe216';
+    const url = 'https://api.openweathermap.org/data/2.5/weather?lat={lat}&lon={long}&appid={apikey}';
     const temperatureElement = document.querySelector('.temperature');
 
     const temperatureDiv = document.querySelector('.temperature');
